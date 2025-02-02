@@ -14,6 +14,10 @@ export default class myButton {
         "the correct answer is to the left", 
         "kamila :( be my valentine",
         "kamilaaaaaaaaaa :(((", 
+        "pleaseeee, with a cherry on top",
+        "with ben and jerry ice cream?",
+        "with cats",
+        "with kaczkas",
         "be my valentines", 
         "is it really a no? :(",
          "yes???", 
@@ -80,14 +84,14 @@ export default class myButton {
         //displays text of multple no messages
         if(this.numOfNo >= 1 && this.numOfYes == 0)
         {   
-            if(this.numOfNo <= 12)
+            if(this.numOfNo <= this.noWords.length)
             {
                 let length =  this.noWords[ this.numOfNo - 1].length;
 
                 ctx.fillText( this.noWords[ this.numOfNo - 1], 1500-(length*15), 1000);
             }
             else{
-                ctx.fillText( this.noWords[ 12], 1500 - 50, 1000);
+                ctx.fillText( this.noWords[ this.noWords.length-1], 1500 - 50, 1000);
 
             }
         }
@@ -148,11 +152,11 @@ export default class myButton {
                             if ((y*scale) >= this.button2.y){
                                 this.numOfNo += 1;
                                 console.log("hit no")
-                                this.button1.x -= 5;
-                                this.button1.y -= 5;
+                                this.button1.x -= 10;
+                                this.button1.y -= 10;
 
-                                this.button1.sizex *= 1.05;
-                                this.button1.sizey *= 1.05;
+                                this.button1.sizex *= 1.08;
+                                this.button1.sizey *= 1.08;
 
                                 console.log(this.button1.x)
                             }else{this.colliding = false;}
