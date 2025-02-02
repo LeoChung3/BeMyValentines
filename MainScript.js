@@ -8,9 +8,14 @@
 
 import showuspics from "./showuspics.js";
 
-
+const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext("2d");
 
+const mousePos = {
+        x:0,
+        y:0
+      };
+      
 function frame(){
         console.log(ctx.width);
 
@@ -45,6 +50,16 @@ function frame(){
         ctx.stroke();
         ctx.restore();
         requestAnimationFrame(frame)
-
+        
 }
+
+canvas.addEventListener('click', (e) => {
+        mousePos.x =  e.clientX - canvas.offsetLeft
+        mousePos.y =  e.clientY - canvas.offsetTop
+        
+                
+        console.log(mousePos.x)
+        console.log(mousePos.y)
+
+})
 requestAnimationFrame(frame)
