@@ -39,29 +39,18 @@ export default class myButton {
     }
     draw(ctx, scale)
     {
-
-        if(this.numOfNo >= 1 && this.numOfYes == 0)
-        {   
-            if(this.numOfNo <= 12)
-            {
-                ctx.fillText( this.noWords[ this.numOfNo - 1], 330, 1000);
-            }
-            else{
-                ctx.fillText( this.noWords[ 12], 330, 1000);
-
-            }
-        }
-        if(this.numOfYes >= 1)
-        {
-            ctx.fillText("you are my valentine <3", 330, 1000);
-
-        }
         ctx.save();
         ctx.beginPath();
         ctx.lineWidth = 5;
+        ctx.fillStyle = "green";
+
         ctx.rect(this.button1.x, this.button1.y, this.button1.sizex, this.button1.sizey);
+        ctx.fill();
         ctx.stroke();
         ctx.restore();
+
+        ctx.font = "100px Arial";
+        ctx.fillStyle = "pink";
         ctx.fillText("YES", this.button1.x + (this.button1.sizex/2) - 100, this.button1.y+(this.button1.sizey/2) + 10);
 
 
@@ -70,23 +59,46 @@ export default class myButton {
         ctx.save();
         ctx.beginPath();
         ctx.lineWidth = 5;
+        ctx.fillStyle = "red";
         ctx.rect(this.button2.x, this.button2.y, 300, 200);
+        ctx.fill();
+
         ctx.stroke();
         ctx.restore();
+        ctx.font = "100px Arial";
+        ctx.fillStyle = "pink";
         ctx.fillText("NO", this.button2.x + (this.button2.sizex/2) - 100, this.button2.y+(this.button2.sizey/2) + 10);
         }
 
 
-        if((this.button1.x +  this.button1.sizex) > this.button2.x)
+
+
+        //text
+        if(this.numOfNo >= 1 && this.numOfYes == 0)
+        {   
+            if(this.numOfNo <= 12)
             {
-                console.log("aaaa")
-                this.button2.x += 10
+                let length =  this.noWords[ this.numOfNo - 1].length;
+
+                ctx.fillText( this.noWords[ this.numOfNo - 1], 1500-(length*15), 1000);
             }
+            else{
+                ctx.fillText( this.noWords[ 12], 1500 - 50, 1000);
+
+            }
+        }
+        
+        if(this.numOfYes >= 1)
+        {
+            let a = "you are my valentine <3"
+            ctx.fillText("you are my valentine <3", 1500-((a.length)*15), 1000);
+
+        }
     }
     check(x,y, scale)
     {
 
-        
+
         console.log(x * scale, y * scale)
         if ((x*scale) <= this.button1.x + this.button1.sizex)
             {

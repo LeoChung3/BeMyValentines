@@ -8,12 +8,13 @@
 
 import showuspics from "./showuspics.js";
 import myButton from "./Button.js";
+import lilme from "./lilme.js";
 
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext("2d");
 
 const buttonclass = new myButton()
-
+const meclass = new lilme()
 const mousePos = {
         x:0,
         y:0
@@ -50,7 +51,7 @@ function frame(){
                 oldsm += 1;
                 olds = 0;
         }
-        console.log(time)
+        //console.log(time)
         ctx.clearRect(0,0,canvas.width,canvas.height);
         ctx.save();
         ctx.beginPath();
@@ -62,13 +63,15 @@ function frame(){
 
         buttonclass.draw(ctx, scale)
 
-        ctx.save();
-        ctx.beginPath();
-        ctx.lineWidth = 10;
-        ctx.moveTo(1500, 1500);
-        ctx.lineTo(1500, 0);
-        ctx.stroke();
-        ctx.restore();
+
+        meclass.draw(ctx, time)
+        // ctx.save();
+        // ctx.beginPath();
+        // ctx.lineWidth = 10;
+        // ctx.moveTo(1500, 1500);
+        // ctx.lineTo(1500, 0);
+        // ctx.stroke();
+        // ctx.restore();
 
         
         requestAnimationFrame(frame)
