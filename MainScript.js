@@ -97,7 +97,6 @@ canvas.addEventListener('mousemove', (e) => {
 //================================================================================================================================================================
 //================================================================================================================================================================
 canvas.addEventListener('touchstart', (e) => {
-        e.preventDefault();
         press = true;
         mousePos.x =  e.clientX - canvas.offsetLeft
         mousePos.y =  e.clientY - canvas.offsetTop
@@ -106,12 +105,10 @@ canvas.addEventListener('touchstart', (e) => {
 })
 
 canvas.addEventListener('touchend', (e) => {
-        e.preventDefault();
         press = false;
 })
 
 canvas.addEventListener('touchmove', (e) => {
-        e.preventDefault();
         mousePos.x =  e.clientX - canvas.offsetLeft
         mousePos.y =  e.clientY - canvas.offsetTop
         console.log(mousePos.x, mousePos.y)        
