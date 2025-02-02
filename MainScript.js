@@ -29,6 +29,8 @@ var today = new Date();
 var time = 0;
 var oldsm = today.getMinutes();
 var olds = today.getSeconds();;
+
+let press = false;
 function frame(){
         var today = new Date();
 
@@ -65,13 +67,8 @@ function frame(){
 
 
         meclass.draw(ctx, time)
-        // ctx.save();
-        // ctx.beginPath();
-        // ctx.lineWidth = 10;
-        // ctx.moveTo(1500, 1500);
-        // ctx.lineTo(1500, 0);
-        // ctx.stroke();
-        // ctx.restore();
+        meclass.move(mousePos.x, mousePos.y, press, scale)
+        meclass.moveitself()
 
         
         requestAnimationFrame(frame)
@@ -79,12 +76,41 @@ function frame(){
 }
 
 
-canvas.addEventListener('click', (e) => {
+canvas.addEventListener('mousedown', (e) => {
+        press = true;
         mousePos.x =  e.clientX - canvas.offsetLeft
         mousePos.y =  e.clientY - canvas.offsetTop
         buttonclass.check(mousePos.x, mousePos.y, scale);
         
+})
+
+canvas.addEventListener('mouseup', (e) => {
+        press = false;
+})
+
+canvas.addEventListener('mousemove', (e) => {
+        mousePos.x =  e.clientX - canvas.offsetLeft
+        mousePos.y =  e.clientY - canvas.offsetTop
+      
+})
+//================================================================================================================================================================
+//================================================================================================================================================================
+//================================================================================================================================================================
+canvas.addEventListener('touchstart', (e) => {
+        press = true;
+        mousePos.x =  e.clientX - canvas.offsetLeft
+        mousePos.y =  e.clientY - canvas.offsetTop
+        buttonclass.check(mousePos.x, mousePos.y, scale);
         
-        
+})
+
+canvas.addEventListener('touchend', (e) => {
+        press = false;
+})
+
+canvas.addEventListener('touchmove', (e) => {
+        mousePos.x =  e.clientX - canvas.offsetLeft
+        mousePos.y =  e.clientY - canvas.offsetTop
+        console.log(mousePos.x, mousePos.y)        
 })
 requestAnimationFrame(frame)

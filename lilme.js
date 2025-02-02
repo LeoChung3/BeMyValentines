@@ -1,9 +1,11 @@
 export default class lilme {
     constructor() 
     {
-        this.xpos;
-        this.ypos;
-
+        this.xpos = 100;
+        this.ypos = 2500;
+        this.xsize = 200;
+        this.ysize = 270;
+        this.direction = "right";
     }
     draw(ctx, time)
     {
@@ -16,19 +18,60 @@ export default class lilme {
         {
         const img = new Image();
         img.src = imagePath1;
-        ctx.drawImage(img, 1500 - (2094 / 2), 0, 200, 270);
+        ctx.drawImage(img, this.xpos, this.ypos, this.xsize, this.ysize);
         }
         if(frame == 1)
         {
             const img = new Image();
             img.src = imagePath2;
-            ctx.drawImage(img, 1500 - (2094 / 2), 0, 200, 270);
+            ctx.drawImage(img, this.xpos, this.ypos, this.xsize, this.ysize);
         }
 
-        
+
     }
-    move()
+    move(x,y, pressing, scale)
     {
 
+        if ((x*scale) <= this.xpos + this.ysize)
+            {
+                if ((x*scale) >= this.xpos - 40)
+                {
+                    if ((y*scale) <= this.ypos+ this.ysize)
+                    {
+                        if ((y*scale) >= this.ypos - 40){
+                            if(pressing)
+                            {
+                                this.xpos = (x * scale) - 100;
+                                this.ypos = (y * scale) - 135;
+                            }
+
+                        }else{this.colliding = false;}
+                    }else{this.colliding = false;}
+                }else{this.colliding = false;}
+            }else{this.colliding = false;}
+
+    }
+
+    moveitself()
+    {
+        if(this.xpos >= 2700)
+        {
+            this.direction = "left";
+        }
+        if(this.xpos <= 300)
+        {
+            this.direction = "right";
+        }
+        if(this.direction == "left")
+        {
+            
+            this.xpos -= 2
+        }
+        if(this.direction == "right")
+        {
+            
+            this.xpos += 2
+        }
+        
     }
 }
