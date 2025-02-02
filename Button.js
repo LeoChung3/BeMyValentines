@@ -39,6 +39,7 @@ export default class myButton {
     }
     draw(ctx, scale)
     {
+        //draw yes button always
         ctx.save();
         ctx.beginPath();
         ctx.lineWidth = 5;
@@ -54,6 +55,9 @@ export default class myButton {
         ctx.fillText("YES", this.button1.x + (this.button1.sizex/2) - 100, this.button1.y+(this.button1.sizey/2) + 10);
 
 
+
+
+        // displays no button is yes hasnt been clicked yet
         if(this.numOfYes == 0)
         {
         ctx.save();
@@ -73,7 +77,7 @@ export default class myButton {
 
 
 
-        //text
+        //displays text of multple no messages
         if(this.numOfNo >= 1 && this.numOfYes == 0)
         {   
             if(this.numOfNo <= 12)
@@ -88,12 +92,27 @@ export default class myButton {
             }
         }
         
+
+        //if yes is clicked one time
         if(this.numOfYes >= 1)
         {
-            let a = "you are my valentine <3"
-            ctx.fillText("you are my valentine <3", 1500-((a.length)*15), 1000);
+            let a = "yayyyy, youre my valentines <33333"
+            ctx.fillText(a, 1500-((a.length)*20), 1000);
 
         }
+
+        //putting start message on to canvas
+        if(this.numOfNo == 0 && this.numOfYes == 0)
+        {
+            ctx.fillText("will you be my valentines kami?", 800, 1000);
+        }
+
+        //moves button to the right if yes is over lapping no
+        if((this.button1.x +  this.button1.sizex) > this.button2.x)
+            {
+                this.button2.x += 10
+            }
+
     }
     check(x,y, scale)
     {
