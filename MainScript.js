@@ -7,17 +7,22 @@
 
 
 import showuspics from "./showuspics.js";
+import myButton from "./Button.js";
 
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext("2d");
+
+const buttonclass = new myButton()
 
 const mousePos = {
         x:0,
         y:0
       };
-      
+
+ctx.font = "80px Arial";
+ctx.fillStyle = "pink";
+const scale = 3000/800
 function frame(){
-        console.log(ctx.width);
 
         ctx.clearRect(0,0,canvas.width,canvas.height);
         ctx.save();
@@ -28,19 +33,7 @@ function frame(){
         ctx.restore();
 
 
-        ctx.save();
-        ctx.beginPath();
-        ctx.lineWidth = 5;
-        ctx.rect(1000, 1500, 300, 200);
-        ctx.stroke();
-        ctx.restore();
-
-        ctx.save();
-        ctx.beginPath();
-        ctx.lineWidth = 5;
-        ctx.rect(1700, 1500, 300, 200);
-        ctx.stroke();
-        ctx.restore();
+        buttonclass.draw(ctx, scale)
 
         ctx.save();
         ctx.beginPath();
@@ -49,17 +42,19 @@ function frame(){
         ctx.lineTo(1500, 0);
         ctx.stroke();
         ctx.restore();
+
+        
         requestAnimationFrame(frame)
         
 }
 
+
 canvas.addEventListener('click', (e) => {
         mousePos.x =  e.clientX - canvas.offsetLeft
         mousePos.y =  e.clientY - canvas.offsetTop
+        buttonclass.check(mousePos.x, mousePos.y, scale);
         
-                
-        console.log(mousePos.x)
-        console.log(mousePos.y)
-
+        
+        
 })
 requestAnimationFrame(frame)
