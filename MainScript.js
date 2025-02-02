@@ -10,48 +10,41 @@ import showuspics from "./showuspics.js";
 
 
 const ctx = canvas.getContext("2d");
-const leftbutton  = document.getElementById("back");
-const rightbutton  = document.getElementById("next");
-const picclass = new showuspics();
 
 function frame(){
+        console.log(ctx.width);
+
         ctx.clearRect(0,0,canvas.width,canvas.height);
-        
-        picclass.draw(ctx);
+        ctx.save();
+        ctx.beginPath();
+        ctx.lineWidth = 5;
+        ctx.rect(100, 100, 2800 , 2800);
+        ctx.stroke();
+        ctx.restore();
 
 
-        console.log(picclass.numberofpic)
-    
+        ctx.save();
+        ctx.beginPath();
+        ctx.lineWidth = 5;
+        ctx.rect(1000, 1500, 300, 200);
+        ctx.stroke();
+        ctx.restore();
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.lineWidth = 5;
+        ctx.rect(1700, 1500, 300, 200);
+        ctx.stroke();
+        ctx.restore();
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.lineWidth = 10;
+        ctx.moveTo(1500, 1500);
+        ctx.lineTo(1500, 0);
+        ctx.stroke();
+        ctx.restore();
         requestAnimationFrame(frame)
 
 }
-    
-
-leftbutton.addEventListener("touchstart", (event) => {
-        event.preventDefault(); // Prevent scrolling
-    
-        picclass.back();
-    });
-    
-rightbutton.addEventListener("touchstart", (event) => {
-event.preventDefault(); // Prevent scrolling
-
-picclass.next();
-});
-
-
-leftbutton.addEventListener("mousedown", (event) => {
-event.preventDefault(); // Prevent scrolling
-picclass.back();
-
-});
-
-
-rightbutton.addEventListener("mousedown", (event) => {
-event.preventDefault(); // Prevent scrolling
-picclass.next();
-
-});
-    
-
 requestAnimationFrame(frame)
