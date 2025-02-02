@@ -22,8 +22,35 @@ const mousePos = {
 ctx.font = "80px Arial";
 ctx.fillStyle = "pink";
 const scale = 3000/800
-function frame(){
 
+var today = new Date();
+
+var time = 0;
+var oldsm = today.getMinutes();
+var olds = today.getSeconds();;
+function frame(){
+        var today = new Date();
+
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+
+        var news = s;
+
+        if(olds < news)
+        {
+                time+=1;
+                olds = news;
+                console.log(olds, news);
+                news = 0;
+
+        }
+        if(oldsm < m)
+        {
+                oldsm += 1;
+                olds = 0;
+        }
+        console.log(time)
         ctx.clearRect(0,0,canvas.width,canvas.height);
         ctx.save();
         ctx.beginPath();
